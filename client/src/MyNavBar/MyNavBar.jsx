@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 // import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -9,8 +9,10 @@ import {
   NavbarToggler,
   NavbarText,
 } from 'reactstrap';
+import { UserContext } from '../Context/UserContex';
 
 function MyNavBar() {
+  const { user } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const navigate = useNavigate();
@@ -41,7 +43,7 @@ function MyNavBar() {
             {link}
           </Button>
         ))}
-        <NavbarText>Simple Text</NavbarText>
+        <NavbarText>{user.name}</NavbarText>
         <NavbarToggler onClick={toggle} />
       </Navbar>
     </div>
